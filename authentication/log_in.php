@@ -1,5 +1,8 @@
 <?php
 include('../connection.php'); 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
+
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
