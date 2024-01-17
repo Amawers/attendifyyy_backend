@@ -2,27 +2,28 @@
 include('../connection.php'); 
 
 // orig
-// if(isset($_POST['teacher_id'], $_POST['subject_name'], $_POST['section_name'], $_POST['start_time'], $_POST['end_time'], $_POST['days_of_weeek'])){
-//     $teacherId  = $_POST['teacher_id'];
-//     $subjectName = $_POST['subject_name'];
-//     $sectionName = $_POST['section_name'];
-//     $startTime = $_POST['start_time'];
-//     $endTime = $_POST['end_time'];
-//     $daysOfWeek = $_POST['days_of_weeek'];
-// }else{
-//     $response = "wala na received from frontend";
-// }
+if(isset($_POST['teacher_id'], $_POST['subject_name'], $_POST['section_name'], $_POST['start_time'], $_POST['end_time'], $_POST['days_of_week'])){
+    $teacherId  = $_POST['teacher_id'];
+    $subjectName = $_POST['subject_name'];
+    $sectionName = $_POST['section_name'];
+    $startTime = $_POST['start_time'];
+    $endTime = $_POST['end_time'];
+    $daysOfWeek = $_POST['days_of_week'];
+}else{
+    $response = "wala na received from frontend";
+}
 
-$teacherId  = '8';
-$subjectName = 'Mobile Programming';
-$sectionName = 'R7';
-$startTime = '08:00:00';
-$endTime = '12:00:00';
-$daysOfWeek = 'Monday';
+// testing
+// $teacherId  = '8';
+// $subjectName = 'Mobile Programming';
+// $sectionName = 'R7';
+// $startTime = '08:00:00';
+// $endTime = '12:00:00';
+// $daysOfWeek = 'Monday';
 
-$query = "SELECT subjects.subject_id
-          FROM subjects
-          WHERE subject_name = '$subjectName'";
+$query = "SELECT subjects.subject_id FROM subjects WHERE subject_name = '$subjectName'";
+
+// $query = "SELECT student_id FROM students WHERE email = '$email'";
 $result = $connectNow->query($query);
 
 //use existing subject_id
