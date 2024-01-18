@@ -2,16 +2,16 @@
 include('../connection.php'); 
 
 // orig
-// if(isset($_POST['schedule_id'], $_POST['reference_number'])){
-//     $scheduleId = $_POST['schedule_id'];
-//     $referenceNumber = $_POST['reference_number'];
-// }else{
-//     $response = "wala na received from frontend";
-// }
+if(isset($_POST['schedule_id'], $_POST['reference_number'])){
+    $scheduleId = $_POST['schedule_id'];
+    $referenceNumber = $_POST['reference_number'];
+}else{
+    $response = "wala na received from frontend";
+}
 
-// testing purpose
-$scheduleId = '1';
-$referenceNumber = '2021300656';
+// // testing purpose
+// $scheduleId = '1';
+// $referenceNumber = '2021300656';
 
 
 $query = "INSERT INTO attendance (schedule_id, attendance_date, attendance_time, attendance_status)
