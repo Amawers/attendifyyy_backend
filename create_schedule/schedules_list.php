@@ -29,9 +29,6 @@ if($result->num_rows > 0) {
         $schedulesList[] = $rowFound;
     }
     echo json_encode($schedulesList);
-}else{
-    echo "didn't receive";
 }
 $connectNow->close();
-
 ?>

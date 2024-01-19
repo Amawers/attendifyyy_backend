@@ -38,8 +38,6 @@ if ($result->num_rows > 0) {
         $attendanceList[] = $rowFound;
     }
     echo json_encode($attendanceList);
-} else {
-    echo json_encode("wala");
-}
+} 
 $connectNow->close();
 ?>
