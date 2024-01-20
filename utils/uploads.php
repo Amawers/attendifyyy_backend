@@ -60,7 +60,7 @@ class Uploads{
         } else {
             $this->respond = array(
                 "status" => 0,
-                "image_path" => null
+                "image_path" => "Walay path"
             );
         }
 

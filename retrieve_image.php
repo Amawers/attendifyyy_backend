@@ -3,8 +3,8 @@ include("utils/uploads.php");
 
 // $data = json_decode(file_get_contents('php://input'), true);
 
-// $user_id = $data['teacher_id'];
-$user_id = '16';
+$user_id = $_GET['teacher_id'];
+// $user_id = '16';
 
 
 if ($user_id != NULL) {
