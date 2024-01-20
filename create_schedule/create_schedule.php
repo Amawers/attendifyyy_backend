@@ -13,6 +13,9 @@ if(isset($_POST['teacher_id'], $_POST['subject_name'], $_POST['section_name'], $
     $response = "wala na received from frontend";
 }
 
+// Extract time from the TimeOfDay() wrapper
+$startTime = substr($startTime, 10, 5);
+$endTime = substr($endTime, 10, 5);
 // testing
 // $teacherId  = '8';
 // $subjectName = 'Mobile Programming';
