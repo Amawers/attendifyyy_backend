@@ -40,4 +40,30 @@ class Uploads{
 
        return json_encode($this->respond);
     }
+
+    public function getImagePath(string $user_id){
+        $serverHost = "localhost";
+        $user = "root";
+        $password = "";
+        $database = "attendifyyy";
+
+        $connectNow = new mysqli($serverHost, $user, $password, $database);
+
+        $query = "SELECT profile_pic_path FROM teachers WHERE teacher_id = '$user_id'";
+        $result = $connectNow->query($query);
+
+        if ($result && $row = $result->fetch_assoc()) {
+            $this->respond = array(
+                "status" => 1,
+                "image_path" => $row['profile_pic_path']
+            );
+        } else {
+            $this->respond = array(
+                "status" => 0,
+                "image_path" => null
+            );
+        }
+
+        return json_encode($this->respond);
+    }
 }
