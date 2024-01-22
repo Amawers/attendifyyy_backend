@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
 
 $teacherId = $_GET['teacher_id'];
-$query = "SELECT subjects.*, subject_teachers.section_id, sections.section_name FROM subjects JOIN subject_teachers ON subjects.subject_id = subject_teachers.subject_id
+$query = "SELECT subjects.*, subject_teachers.section_id, subject_teachers.subject_teachers_id, sections.section_name FROM subjects JOIN subject_teachers ON subjects.subject_id = subject_teachers.subject_id
 JOIN sections ON sections.section_id = subject_teachers.section_id WHERE subject_teachers.teacher_id = '$teacherId'";
 
 $result = $connectNow->query($query);
