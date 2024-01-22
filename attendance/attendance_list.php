@@ -4,9 +4,13 @@ include('../connection.php');
 // orig
 $teacherId = $_POST['teacher_id'];
 $subjectName = $_POST['subject_name'];
+$sectionName = $_POST['section_name'];
+
 
 // testing purpose
-// $teacherId = '8';
+// $teacherId = '16';
+// $subjectName = 'Information Assurance Security';
+// $sectionId = '9';
 
 $query = "SELECT class_schedules.schedule_id 
 FROM class_schedules WHERE class_schedules.teacher_id = '$teacherId'";
@@ -25,9 +29,15 @@ if ($result->num_rows > 0) {
 // JOIN students s ON ss.student_id = s.student_id WHERE attendance.schedule_id = '$scheduleId' AND sub.subject_name = '$subjectName'";
 
 $query = "SELECT sub.subject_name, s.first_name, s.last_name, a.attendance_status, CURRENT_DATE() AS attendance_date, 
-TIME_FORMAT(a.attendance_time, '%H:%i') AS formatted_time FROM attendance a JOIN class_schedules cs ON a.schedule_id = cs.schedule_id
-JOIN student_subjects ss ON cs.subject_id = ss.subject_id AND cs.section_id = ss.section_id JOIN subjects sub ON ss.subject_id = sub.subject_id
-JOIN students s ON ss.student_id = s.student_id WHERE a.schedule_id = '$scheduleId' AND sub.subject_name = '$subjectName'";
+TIME_FORMAT(a.attendance_time, '%H:%i') AS formatted_time FROM attendance a 
+JOIN class_schedules cs ON a.schedule_id = cs.schedule_id
+JOIN student_subjects ss ON cs.subject_id = ss.subject_id AND cs.section_id = ss.section_id 
+JOIN subjects sub ON ss.subject_id = sub.subject_id
+JOIN students s ON ss.student_id = s.student_id 
+JOIN sections ON sections.section_id = cs.section_id
+WHERE a.schedule_id = '$scheduleId' 
+AND sub.subject_name = '$subjectName' 
+AND sections.section_name = '$sectionName'";
 
 
 $result = $connectNow->query($query);
