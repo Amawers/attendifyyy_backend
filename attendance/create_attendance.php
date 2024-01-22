@@ -2,17 +2,12 @@
 include('../connection.php'); 
 
 // orig
-if(isset($_POST['schedule_id'], $_POST['reference_number'])){
-    $scheduleId = $_POST['schedule_id'];
+if(isset($_POST['subject_name'], $_POST['reference_number'])){
+    $subjectName = $_POST['subject_name'];
     $referenceNumber = $_POST['reference_number'];
 }else{
     $response = "wala na received from frontend";
 }
-
-// // testing purpose
-// $scheduleId = '1';
-// $referenceNumber = '2021300656';
-
 
 $query = "INSERT INTO attendance (schedule_id, attendance_date, attendance_time, attendance_status)
 SELECT
@@ -26,8 +21,10 @@ JOIN
     student_subjects ss ON cs.subject_id = ss.subject_id AND cs.section_id = ss.section_id
 JOIN
     students s ON ss.student_id = s.student_id
+JOIN 
+    subjects ON cs.subject_id = subjects.subject_id
 WHERE
-    cs.schedule_id = '$scheduleId'
+    subjects.subject_name ='$subjectName'
     AND s.reference_number = '$referenceNumber'";
     
 $result = $connectNow->query($query);
