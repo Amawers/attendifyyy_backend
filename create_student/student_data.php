@@ -15,7 +15,11 @@ if($result->num_rows > 0) {
     while($rowFound = $result->fetch_assoc()) {
         $studentDataList[] = $rowFound;
     }
-    echo json_encode($studentDataList);
+    echo json_encode(array("success"=>true,"student_subject_data"=>$studentDataList));
+}else{
+    $error = array();
+    $error = ["error"=>"error lods"];
+    echo json_encode(array("success"=>false,"student_subject_data"=>$error));
 }
 $connectNow->close();
 ?>

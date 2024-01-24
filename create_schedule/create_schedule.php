@@ -56,12 +56,9 @@ VALUES ('$teacherId','$subjectId', '$sectionId', '$startTime', '$endTime', '$day
 $result = $connectNow->query($query);
 
 if ($result) {
-    $response = "Data inserted successfully";
+    echo json_encode(array("success"=>true));
 } else {
-    $response = "Error inserting data: " . $connectNow->error;
+    echo json_encode(array("success"=>false));
 }
-
-echo json_encode($response);
-
 $connectNow->close();
 ?>

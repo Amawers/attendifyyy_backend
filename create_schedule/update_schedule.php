@@ -25,11 +25,9 @@ $result = $connectNow->query($query);
 
 
 if ($result) {
-    $response = "Saksespoly apdet";
+    echo json_encode(array("success"=>true));
 } else {
-    $response = "Error inserting data: " . $connectNow->error;
+    echo json_encode(array("success"=>false));
 }
-echo json_encode($response);
-
 $connectNow->close();
 ?>

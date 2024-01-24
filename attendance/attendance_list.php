@@ -8,25 +8,26 @@ $sectionName = $_POST['section_name'];
 
 
 // testing purpose
-// $teacherId = '16';
-// $subjectName = 'Information Assurance Security';
-// $sectionId = '9';
+// $teacherId = '8';
+// $subjectName = 'Mobile Programming';
+// $sectionName = 'R7';
 
-$query = "SELECT class_schedules.schedule_id 
-FROM class_schedules WHERE class_schedules.teacher_id = '$teacherId'";
+
+$query = "SELECT cs.schedule_id 
+FROM class_schedules cs
+JOIN subjects ON cs.subject_id = subjects.subject_id
+JOIN sections ON cs.section_id = sections.section_id
+WHERE cs.teacher_id = '$teacherId' 
+AND subjects.subject_name = '$subjectName'
+AND sections.section_name = '$sectionName'";
+
+
 $result = $connectNow->query($query);
 
 if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $scheduleId = $row['schedule_id'];
-} else {
-    echo 'error kuha subject_id';
 }
-
-// $query = "SELECT sub.subject_name, s.first_name, s.last_name, attendance.attendance_status, CURRENT_DATE(), TIME_FORMAT(attendance.attendance_time, '%H:%i') AS formatted_time
-// FROM attendance, class_schedules cs JOIN student_subjects ss ON cs.subject_id = ss.subject_id AND cs.section_id = ss.section_id
-// JOIN subjects sub ON ss.subject_id = sub.subject_id
-// JOIN students s ON ss.student_id = s.student_id WHERE attendance.schedule_id = '$scheduleId' AND sub.subject_name = '$subjectName'";
 
 $query = "SELECT sub.subject_name, s.first_name, s.last_name, a.attendance_status, CURRENT_DATE() AS attendance_date, 
 TIME_FORMAT(a.attendance_time, '%H:%i') AS formatted_time FROM attendance a 
@@ -47,7 +48,9 @@ if ($result->num_rows > 0) {
     while ($rowFound = $result->fetch_assoc()) {
         $attendanceList[] = $rowFound;
     }
-    echo json_encode($attendanceList);
-} 
+    echo json_encode(array("success"=>true,"attendance_list_data"=>$attendanceList));
+}else{
+    echo json_encode(array("success"=>false));
+}
 $connectNow->close();
 ?>

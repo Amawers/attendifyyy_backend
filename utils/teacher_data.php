@@ -15,7 +15,7 @@ if($result->num_rows > 0) {
     while($rowFound = $result->fetch_assoc()) {
         $schedulesList[] = $rowFound;
     }
-    echo json_encode($schedulesList);
+    echo json_encode(array("success"=>true,"teacher_data"=>$schedulesList));
 }
 $connectNow->close();
 ?>
