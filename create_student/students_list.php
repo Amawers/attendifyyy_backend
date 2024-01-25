@@ -1,11 +1,10 @@
 <?php
 include('../connection.php'); 
-$headers = getallheaders();
 
-$subjectName = $headers['subject_name'];
-$sectionId = $headers['section_id'];
-$subjectId = $headers['subject_id'];
-$teacherId = $headers['teacher_id'];
+$subjectName = $_POST['subject_name'];
+$sectionId = $_POST['section_id'];
+$subjectId = $_POST['subject_id'];
+$teacherId = $_POST['teacher_id'];
 
 //testing purpose
 // $subjectName = 'Mobile Programming';
@@ -35,10 +34,10 @@ if($result->num_rows > 0) {
     while($rowFound = $result->fetch_assoc()) {
         $studentList[] = $rowFound;
     }
-    echo json_encode($studentList);
+    echo json_encode(array("success"=>true,"student_list_data"=>$studentList));
 }else{
-    echo "didn't receive";
-}
+    $error = array();
+    $error = ["error"=>"error lods"];
+    echo json_encode(array("success"=>false,"student_list_data"=>$error));}
 $connectNow->close();
-
 ?>

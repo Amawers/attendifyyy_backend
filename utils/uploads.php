@@ -1,5 +1,6 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS');
 class Uploads{
     private $respond;
 
@@ -54,12 +55,12 @@ class Uploads{
 
         if ($result && $row = $result->fetch_assoc()) {
             $this->respond = array(
-                "status" => 1,
+                "success" => true,
                 "image_path" => $row['profile_pic_path']
             );
         } else {
             $this->respond = array(
-                "status" => 0,
+                "success" => false,
                 "image_path" => "Walay path"
             );
         }

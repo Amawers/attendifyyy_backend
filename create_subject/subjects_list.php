@@ -14,7 +14,7 @@ if($result->num_rows > 0) {
     while($rowFound = $result->fetch_assoc()) {
         $teacherRecord[] = $rowFound;
     }
-    echo json_encode($teacherRecord);
+    echo json_encode(array("success"=>true,"subject_list_data"=>$teacherRecord));
 }
 $connectNow->close();
 ?>

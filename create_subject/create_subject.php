@@ -48,10 +48,11 @@ if ($result->num_rows > 0) {
 $query = "INSERT INTO subject_teachers (subject_id, teacher_id, section_id) VALUES ('$subject_id', '$teacherId', '$section_id');";
 $result = $connectNow->query($query);
 
+
 if ($result) {
-    $response = "Data inserted successfully";
+    echo json_encode(array("success"=>true));
 } else {
-    $response = "Error inserting data: " . $connectNow->error;
+    echo json_encode(array("success"=>false));
 }
 
 } else {
