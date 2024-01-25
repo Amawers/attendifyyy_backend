@@ -15,8 +15,10 @@ if($result->num_rows > 0) {
     while($rowFound = $result->fetch_assoc()) {
         $recentAttendanceList[] = $rowFound;
     }
-    echo json_encode($recentAttendanceList);
+    // echo json_encode($recentAttendanceList);
+    echo json_encode(array("success"=>true,"recent_attendance_list"=>$recentAttendanceList));
+
 }else{
-    echo "nag error sa pag assign array";
+    echo json_encode(array("success"=>false));
 }
 ?>
